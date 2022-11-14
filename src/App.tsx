@@ -28,20 +28,17 @@ function App() {
   return (
       <>
         {jobsFromServer.length > 0 ?
-            <HashRouter>
-              <Routes>
-                <Route path="/">
-                  <Route index element={<JobBoard jobsFromServer={jobsFromServer}/>}/>
-                  <Route path=":pageId" element={<JobBoard jobsFromServer={jobsFromServer}/>}/>
-                </Route>
-                <Route path="/:pageId/:jobId" element={<JobDetails jobsFromServer={jobsFromServer}/>}/>
-                <Route path="/home" element={<Navigate to="/" replace/>}/>
-                <Route path='*' element={<PageNotFound/>}/>
-              </Routes>
-            </HashRouter>
+            <Routes>
+              <Route path="/">
+                <Route index element={<JobBoard jobsFromServer={jobsFromServer}/>}/>
+                <Route path=":pageId" element={<JobBoard jobsFromServer={jobsFromServer}/>}/>
+              </Route>
+              <Route path="/:pageId/:jobId" element={<JobDetails jobsFromServer={jobsFromServer}/>}/>
+              <Route path="/home" element={<Navigate to="/" replace/>}/>
+              <Route path='*' element={<PageNotFound/>}/>
+            </Routes>
             : <Preloader fetchError={fetchError} getFallBackJobs={getFallBackJobs}/>
         }
-
       </>
   );
 }
