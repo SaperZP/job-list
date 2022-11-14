@@ -1,25 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react';
+import {HashRouter, Navigate, Route, Routes} from "react-router-dom";
+import JobBoard from "./components/JobBoard/JobBoard";
+import JobDetails from "./components/JobDetails/JobDetails";
+import PageNotFound from "./components/PageNotFound/PageNotFound";
+import {getJobs} from "./api";
+import Preloader from "./components/Preloader/Preloader";
+import response from "../src/response.json";
+
 
 function App() {
+  const fallBackJobs = response as unknown as Job[];
+  const [jobsFromServer, setJobsFromServer] = useState<Job[]>([]);
+  const [fetchError, setFetchError] = useState('');
+
+  useEffect(() => {
+    getJobs()
+        .then((data) => {
+          setJobsFromServer(data)
+        })
+        .catch((error) => setFetchError(error.message))
+  }, [])
+
+  const getFallBackJobs = () => {
+    setJobsFromServer(fallBackJobs)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <>
+        {jobsFromServer.length > 0 ?
+            <HashRouter>
+              <Routes>
+                <Route path="/">
+                  <Route index element={<JobBoard jobsFromServer={jobsFromServer}/>}/>
+                  <Route path=":pageId" element={<JobBoard jobsFromServer={jobsFromServer}/>}/>
+                </Route>
+                <Route path="/:pageId/:jobId" element={<JobDetails jobsFromServer={jobsFromServer}/>}/>
+                <Route path="/home" element={<Navigate to="/" replace/>}/>
+                <Route path='*' element={<PageNotFound/>}/>
+              </Routes>
+            </HashRouter>
+            : <Preloader fetchError={fetchError} getFallBackJobs={getFallBackJobs}/>
+        }
+
+      </>
   );
 }
 

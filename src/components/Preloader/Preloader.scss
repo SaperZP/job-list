@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 100vh;
+  width: 600px;
+  margin: auto;
+}
+
+.preloader {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+
+  background-image: url('../../assets/preloader.svg');
+  background-size: contain;
+
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  &__error {
+    text-transform: uppercase;
+    color: red;
+    text-align: center;
+  }
+
+  &__button {
+    background-color: yellow;
+    border-radius: 10px;
+    padding: 10px;
+
+    &:hover {
+      background-color: yellowgreen;
+    }
+  }
+}

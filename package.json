@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-google-maps/api": "^2.16.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -10,9 +11,13 @@
     "@types/node": "^16.18.3",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
+    "classnames": "^2.3.2",
+    "eslint": "8.22.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
+    "sass": "^1.56.0",
     "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"
   },
@@ -39,5 +44,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "autoprefixer": "^10.4.13",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.1.0",
+    "eslint-plugin-react": "^7.31.10",
+    "generate-react-cli": "^8.0.1",
+    "gh-pages": "^4.0.0",
+    "postcss": "^8.4.18",
+    "tailwindcss": "^3.2.2"
   }
 }
