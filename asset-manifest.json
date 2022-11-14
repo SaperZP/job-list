@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d3946377.css",
+    "main.js": "/static/js/main.ee567a8f.js",
+    "static/js/787.ed93ddd3.chunk.js": "/static/js/787.ed93ddd3.chunk.js",
+    "static/media/proxima_nova_font-webfont.woff": "/static/media/proxima_nova_font-webfont.a81d790927ac86732df5.woff",
+    "static/media/proxima_nova_font-webfont.woff2": "/static/media/proxima_nova_font-webfont.b702bc007b735510226f.woff2",
+    "static/media/arrow-right.svg": "/static/media/arrow-right.acc4f9106372f9f499ff75630a4989d1.svg",
+    "static/media/preloader.svg": "/static/media/preloader.509afac62b3c7d2eb086.svg",
+    "static/media/arrow-left.svg": "/static/media/arrow-left.b79ce2c9013f5e8a4dfffc60a55cbdeb.svg",
+    "static/media/star-blue.svg": "/static/media/star-blue.259dcc9897b63dd722f89352248b9def.svg",
+    "static/media/share.svg": "/static/media/share.8ca7d4ed5e9b203a5bf2b136cd06ab51.svg",
+    "static/media/Arrow return.svg": "/static/media/Arrow return.50b1e0e436f1b80d41c8c737fdab20dc.svg",
+    "index.html": "/index.html",
+    "static/media/bookmark-contour.svg": "/static/media/bookmark-contour.2bc723b9ef86b8c28f3b4a5486086ab9.svg",
+    "static/media/location-icon.svg": "/static/media/location-icon.ea23d35a8f9aef54945a4779f06a4a13.svg",
+    "main.d3946377.css.map": "/static/css/main.d3946377.css.map",
+    "main.ee567a8f.js.map": "/static/js/main.ee567a8f.js.map",
+    "787.ed93ddd3.chunk.js.map": "/static/js/787.ed93ddd3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d3946377.css",
+    "static/js/main.ee567a8f.js"
+  ]
+}
