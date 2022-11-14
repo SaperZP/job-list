@@ -7,6 +7,7 @@ import share from '../../assets/icons/share.svg';
 import arrowReturn from '../../assets/icons/Arrow return.svg';
 import pin from '../../assets/icons/location-icon.svg';
 import getDaysSinceCreation from "../../utils/getDaysSinceCreation";
+import {env} from "eslint-config-standard-with-typescript";
 
 interface JobDetailsProps {
   jobsFromServer: Job[]
@@ -51,7 +52,7 @@ const JobDetails: FC<JobDetailsProps> = ({jobsFromServer}) => {
       }
   ), []);
   const {isLoaded} = useLoadScript({
-    googleMapsApiKey: 'AIzaSyAaysov4bOTt6VVLQinN5NJyBLQaHt2e08',
+    googleMapsApiKey: process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ? process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY : '',
   });
 
   return (
