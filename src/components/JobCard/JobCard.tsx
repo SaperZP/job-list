@@ -15,7 +15,7 @@ const JobCard: FC<JobCardProps> = ({job, pageId}) => {
   const sincePostCreation = getDaysSinceCreation(job.createdAt);
 
   return (
-      <div className="job-card flex gap-[19px] px-4 py-[13px] bg-[#EFF0F5] rounded-lg">
+      <div className="job-card w-full h-[206px] lg:h-[164px] flex gap-[19px] px-4 py-[13px] bg-[#EFF0F5] rounded-lg">
         <div className="job-card__img-container flex-[0_0_66px] mt-11 lg:m-0">
           <img
               className="job-card__image w-[66px] h-[66px] rounded-full"

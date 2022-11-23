@@ -13,10 +13,13 @@ interface PaginationProps {
 type buttonsType = number | string;
 
 const Pagination: FC<PaginationProps> = ({pageCount, currentPage}) => {
-  const [activeButton, setActiveButton] = useState<buttonsType>(currentPage || 1);
+  const [activeButton, setActiveButton] = useState<buttonsType>(currentPage);
   const [visibleButtons, setVisibleButtons] = useState<buttonsType []>([]);
   const paginationDigits: number[] = Array.from({length: pageCount}, (_, index) => index + 1);
 
+  useEffect(() => {
+    setActiveButton(currentPage);
+  },[currentPage])
 
   useEffect(() => {
     let tempVisibleButtons = [...visibleButtons]
@@ -60,10 +63,10 @@ const Pagination: FC<PaginationProps> = ({pageCount, currentPage}) => {
   }, [activeButton])
 
   return (
-      <div className="pagination flex gap-[55px] h-[52px] px-[10px] bg-[#FFFFFF] rounded-lg ">
+      <div className="pagination flex w-full md:w-max md:gap-[55px] h-[52px] px-[10px] bg-[#FFFFFF] rounded-lg ">
         <a
             href={`#/${activeButton}`}
-            className="pagination__left-arrow my-[10px] border-r-2 pr-[27px]"
+            className="pagination__left-arrow flex grow my-[10px] border-r-2 md:pr-[27px]"
             onClick={() => setActiveButton(prev => prev <= 1 ? prev : prev as number - 1)}
         >
           <img src={arrowLeft} alt="arrow" className="pagination__arrow-img"/>
@@ -89,7 +92,7 @@ const Pagination: FC<PaginationProps> = ({pageCount, currentPage}) => {
 
         <a
             href={`#/${activeButton}`}
-            className="pagination__right-arrow my-[10px] border-l-2 pl-[27px]"
+            className="pagination__right-arrow flex justify-end grow my-[10px] border-l-2 md:pl-[27px]"
             onClick={() => setActiveButton(prev => prev >= pageCount ? prev : prev as number + 1)}
         >
           <img src={arrowRight} alt="arrow" className="pagination__arrow-img"/>

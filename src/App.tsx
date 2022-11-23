@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {HashRouter, Navigate, Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import JobBoard from "./components/JobBoard/JobBoard";
 import JobDetails from "./components/JobDetails/JobDetails";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
@@ -11,7 +11,7 @@ import response from "../src/response.json";
 function App() {
   const fallBackJobs = response as unknown as Job[];
   const [jobsFromServer, setJobsFromServer] = useState<Job[]>([]);
-  const [fetchError, setFetchError] = useState('');
+  const [fetchError, setFetchError] = useState();
 
   useEffect(() => {
     getJobs()
@@ -35,7 +35,7 @@ function App() {
               </Route>
               <Route path="/:pageId/:jobId" element={<JobDetails jobsFromServer={jobsFromServer}/>}/>
               <Route path="/home" element={<Navigate to="/" replace/>}/>
-              <Route path='*' element={<PageNotFound/>}/>
+              <Route path='/page_not_found' element={<PageNotFound/>}/>
             </Routes>
             : <Preloader fetchError={fetchError} getFallBackJobs={getFallBackJobs}/>
         }
