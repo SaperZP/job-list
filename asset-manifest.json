@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.bc70cbd2.css",
-    "main.js": "./static/js/main.5edc239f.js",
+    "main.css": "./static/css/main.292188a0.css",
+    "main.js": "./static/js/main.950ec073.js",
     "static/js/787.ed93ddd3.chunk.js": "./static/js/787.ed93ddd3.chunk.js",
     "static/media/proxima_nova_font-webfont.woff": "./static/media/proxima_nova_font-webfont.a81d790927ac86732df5.woff",
     "static/media/proxima_nova_font-webfont.woff2": "./static/media/proxima_nova_font-webfont.b702bc007b735510226f.woff2",
@@ -14,12 +14,12 @@
     "index.html": "./index.html",
     "static/media/bookmark-contour.svg": "./static/media/bookmark-contour.2bc723b9ef86b8c28f3b4a5486086ab9.svg",
     "static/media/location-icon.svg": "./static/media/location-icon.ea23d35a8f9aef54945a4779f06a4a13.svg",
-    "main.bc70cbd2.css.map": "./static/css/main.bc70cbd2.css.map",
-    "main.5edc239f.js.map": "./static/js/main.5edc239f.js.map",
+    "main.292188a0.css.map": "./static/css/main.292188a0.css.map",
+    "main.950ec073.js.map": "./static/js/main.950ec073.js.map",
     "787.ed93ddd3.chunk.js.map": "./static/js/787.ed93ddd3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bc70cbd2.css",
-    "static/js/main.5edc239f.js"
+    "static/css/main.292188a0.css",
+    "static/js/main.950ec073.js"
   ]
 }
