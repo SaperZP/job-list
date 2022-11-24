@@ -13,37 +13,35 @@ interface PaginationProps {
 type ButtonsType = number | string;
 
 const Pagination: FC<PaginationProps> = ({pageCount, currentPage}) => {
-  const [activeButton, setActiveButton] = useState<ButtonsType>(currentPage);
+  const [activeButton, setActiveButton] = useState<number>(currentPage);
   const [visibleButtons, setVisibleButtons] = useState<ButtonsType []>([]);
   const paginationDigits: number[] = Array.from({length: pageCount}, (_, index) => index + 1);
-
-  let tempVisibleButtons = [...visibleButtons]
-
   const dotsInitial = '...'
   const dotsLeft = '... '
   const dotsRight = ' ...'
 
-  function activeButtonHandler(button: ButtonsType){
-    if (paginationDigits.length > 6 && typeof button === "string") {
+  function activeButtonHandler(button: ButtonsType) {
+    if (typeof button === "string") {
       if (button === dotsInitial) {
-        setActiveButton(tempVisibleButtons[tempVisibleButtons.length - 3] as number + 1)
+        setActiveButton(+visibleButtons[visibleButtons.length - 3] + 1)
       } else if (button === dotsRight) {
-        setActiveButton(tempVisibleButtons[3] as number + 2)
+        setActiveButton(+visibleButtons[3] + 2)
       } else if (button === dotsLeft) {
-        setActiveButton(tempVisibleButtons[3] as number - 2)
+        setActiveButton(+visibleButtons[3] - 2)
       }
-    }else {
+    } else {
       setActiveButton(button)
     }
   }
 
   useEffect(() => {
+    let tempVisibleButtons = [...visibleButtons]
 
-    if (paginationDigits.length < 6 && typeof activeButton === "number") {
+    if (paginationDigits.length < 6) {
       setVisibleButtons(paginationDigits)
     }
 
-    if (paginationDigits.length > 6 && typeof activeButton === "number") {
+    if (paginationDigits.length > 6) {
       if (activeButton >= 1 && activeButton <= 3) {
         const sliced = paginationDigits.slice(0, 4)
         tempVisibleButtons = [...sliced, dotsInitial, paginationDigits.length]
@@ -62,28 +60,18 @@ const Pagination: FC<PaginationProps> = ({pageCount, currentPage}) => {
       setVisibleButtons(tempVisibleButtons)
     }
 
-    // if (paginationDigits.length > 6 && typeof activeButton === "string") {
-    //   if (activeButton === dotsInitial) {
-    //     setActiveButton(tempVisibleButtons[tempVisibleButtons.length - 3] as number + 1)
-    //   } else if (activeButton === dotsRight) {
-    //     setActiveButton(tempVisibleButtons[3] as number + 2)
-    //   } else if (activeButton === dotsLeft) {
-    //     setActiveButton(tempVisibleButtons[3] as number - 2)
-    //   }
-    // }
-
   }, [activeButton])
 
   useEffect(() => {
     setActiveButton(currentPage);
-  },[currentPage])
+  }, [currentPage])
 
   return (
       <div className="pagination flex w-full md:w-max md:gap-[55px] h-[52px] px-[10px] bg-[#FFFFFF] rounded-lg ">
         <a
             href={`#/${activeButton}`}
             className="pagination__left-arrow flex grow my-[10px] border-r-2 md:pr-[27px]"
-            onClick={() => setActiveButton(prev => prev <= 1 ? prev : prev as number - 1)}
+            onClick={() => setActiveButton((prev) => prev <= 1 ? prev : prev - 1)}
         >
           <img src={arrowLeft} alt="arrow" className="pagination__arrow-img"/>
         </a>
@@ -99,7 +87,6 @@ const Pagination: FC<PaginationProps> = ({pageCount, currentPage}) => {
                       'text-[#5876C5] border-b-2': activeButton === item,
                     },
                 )}
-                // onClick={() => setActiveButton(item)}
                 onClick={() => activeButtonHandler(item)}
             >
               {item}
@@ -110,7 +97,7 @@ const Pagination: FC<PaginationProps> = ({pageCount, currentPage}) => {
         <a
             href={`#/${activeButton}`}
             className="pagination__right-arrow flex justify-end grow my-[10px] border-l-2 md:pl-[27px]"
-            onClick={() => setActiveButton(prev => prev >= pageCount ? prev : prev as number + 1)}
+            onClick={() => setActiveButton((prev) => prev >= pageCount ? prev : prev + 1)}
         >
           <img src={arrowRight} alt="arrow" className="pagination__arrow-img"/>
         </a>

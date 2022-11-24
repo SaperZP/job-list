@@ -18,8 +18,6 @@ const JobBoard: FC<JobBoardProps> = ({jobsFromServer}) => {
   const startPostIndex = endPostIndex - jobsAmountPerPage;
   const jobsToShow: Job[] = jobsFromServer.slice(startPostIndex, endPostIndex);
 
-  console.log(pageId)
-
   useEffect(() => {
     if (pageId && typeof +pageId === "number" && +pageId <= pageCount) {
       setCurrentPage(+pageId)
