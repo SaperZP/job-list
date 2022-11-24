@@ -10,22 +10,34 @@ interface PaginationProps {
   currentPage: number;
 }
 
-type buttonsType = number | string;
+type ButtonsType = number | string;
 
 const Pagination: FC<PaginationProps> = ({pageCount, currentPage}) => {
-  const [activeButton, setActiveButton] = useState<buttonsType>(currentPage);
-  const [visibleButtons, setVisibleButtons] = useState<buttonsType []>([]);
+  const [activeButton, setActiveButton] = useState<ButtonsType>(currentPage);
+  const [visibleButtons, setVisibleButtons] = useState<ButtonsType []>([]);
   const paginationDigits: number[] = Array.from({length: pageCount}, (_, index) => index + 1);
 
-  useEffect(() => {
-    setActiveButton(currentPage);
-  },[currentPage])
+  let tempVisibleButtons = [...visibleButtons]
+
+  const dotsInitial = '...'
+  const dotsLeft = '... '
+  const dotsRight = ' ...'
+
+  function activeButtonHandler(button: ButtonsType){
+    if (paginationDigits.length > 6 && typeof button === "string") {
+      if (button === dotsInitial) {
+        setActiveButton(tempVisibleButtons[tempVisibleButtons.length - 3] as number + 1)
+      } else if (button === dotsRight) {
+        setActiveButton(tempVisibleButtons[3] as number + 2)
+      } else if (button === dotsLeft) {
+        setActiveButton(tempVisibleButtons[3] as number - 2)
+      }
+    }else {
+      setActiveButton(button)
+    }
+  }
 
   useEffect(() => {
-    let tempVisibleButtons = [...visibleButtons]
-    let dotsInitial = '...'
-    let dotsLeft = '... '
-    let dotsRight = ' ...'
 
     if (paginationDigits.length < 6 && typeof activeButton === "number") {
       setVisibleButtons(paginationDigits)
@@ -50,17 +62,21 @@ const Pagination: FC<PaginationProps> = ({pageCount, currentPage}) => {
       setVisibleButtons(tempVisibleButtons)
     }
 
-    if (paginationDigits.length > 6 && typeof activeButton === "string") {
-      if (activeButton === dotsInitial) {
-        setActiveButton(tempVisibleButtons[tempVisibleButtons.length - 3] as number + 1)
-      } else if (activeButton === dotsRight) {
-        setActiveButton(tempVisibleButtons[3] as number + 2)
-      } else if (activeButton === dotsLeft) {
-        setActiveButton(tempVisibleButtons[3] as number - 2)
-      }
-    }
+    // if (paginationDigits.length > 6 && typeof activeButton === "string") {
+    //   if (activeButton === dotsInitial) {
+    //     setActiveButton(tempVisibleButtons[tempVisibleButtons.length - 3] as number + 1)
+    //   } else if (activeButton === dotsRight) {
+    //     setActiveButton(tempVisibleButtons[3] as number + 2)
+    //   } else if (activeButton === dotsLeft) {
+    //     setActiveButton(tempVisibleButtons[3] as number - 2)
+    //   }
+    // }
 
   }, [activeButton])
+
+  useEffect(() => {
+    setActiveButton(currentPage);
+  },[currentPage])
 
   return (
       <div className="pagination flex w-full md:w-max md:gap-[55px] h-[52px] px-[10px] bg-[#FFFFFF] rounded-lg ">
@@ -83,7 +99,8 @@ const Pagination: FC<PaginationProps> = ({pageCount, currentPage}) => {
                       'text-[#5876C5] border-b-2': activeButton === item,
                     },
                 )}
-                onClick={() => setActiveButton(item)}
+                // onClick={() => setActiveButton(item)}
+                onClick={() => activeButtonHandler(item)}
             >
               {item}
             </a>
